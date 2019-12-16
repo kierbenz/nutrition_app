@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/profile_form.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -8,7 +9,10 @@ class ProfileScreen extends StatelessWidget {
         title: Text('Profile'),
         centerTitle: true,
       ),
-      body: Text('Form'),
+      body: Padding(
+        padding: EdgeInsets.all(11.0),
+        child: ProfileForm()
+      ),
     );
   }
 }
