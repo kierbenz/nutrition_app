@@ -10,6 +10,29 @@ class HomeScreen extends StatelessWidget {
         beginColor: Colors.greenAccent[400],
         endColor: Colors.tealAccent[700],
       ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 3.0,
+        child: Container(
+          child: Center(
+            child: IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () { print('test'); },
+            ),
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: <Color>[
+                Colors.greenAccent[400],
+                Colors.tealAccent[700],
+              ],
+            ),
+          ),
+        ),
+        onPressed: () { print('yeaah'); },
+      ),
     );
   }
 }
