@@ -8,5 +8,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     title: 'Nutrition App',
     home: HomeScreen(),
+    debugShowCheckedModeBanner: false,
   );
 }

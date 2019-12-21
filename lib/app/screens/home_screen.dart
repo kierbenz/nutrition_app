@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/gradient_appbar.dart';
+import 'food_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,7 +17,11 @@ class HomeScreen extends StatelessWidget {
           child: Center(
             child: IconButton(
               icon: Icon(Icons.add),
-              onPressed: () { print('test'); },
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => FoodScreen()),
+                );
+              },
             ),
           ),
           decoration: BoxDecoration(
