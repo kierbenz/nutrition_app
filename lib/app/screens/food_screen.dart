@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/food_card.dart';
 
 class FoodScreen extends StatelessWidget {
   @override
@@ -41,7 +42,38 @@ class FoodScreen extends StatelessWidget {
                     topLeft: Radius.circular(63.0),
                   ),
                 ),
-                child: Text('list'),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 63.0),
+                  child: Column(
+                    children: <Widget>[
+                      FoodCard(
+                        title: 'Adobo',
+                        subtitle: 'Rich in Protein',
+                        onTap: () => print('Adobo'),
+                      ),
+                      FoodCard(
+                        title: 'Fish',
+                        subtitle: 'Richest in Protein',
+                        onTap: () => print('Fish'),
+                      ),
+                      FoodCard(
+                        title: 'Pork & Beans',
+                        subtitle: 'Richer in Protein',
+                        onTap: () => print('P and B'),
+                      ),
+                      FoodCard(
+                        title: 'Pinakbet',
+                        subtitle: 'Gulay na gulay',
+                        onTap: () => print('Gulay'),
+                      ),
+                      FoodCard(
+                        title: 'Baboy',
+                        subtitle: 'Pig',
+                        onTap: () => print('Baboy'),
+                      ),
+                    ],
+                  ),
+                ),
               ), 
             ),
           ],
