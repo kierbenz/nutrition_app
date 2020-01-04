@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'widgets/food_card.dart';
+import 'food_detail_screen.dart';
 
 class FoodScreen extends StatelessWidget {
+  void _navigateToDetail(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => FoodDetailScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,27 +56,27 @@ class FoodScreen extends StatelessWidget {
                       FoodCard(
                         title: 'Adobo',
                         subtitle: 'Rich in Protein',
-                        onTap: () => print('Adobo'),
+                        onTap: () => _navigateToDetail(context),
                       ),
                       FoodCard(
                         title: 'Fish',
                         subtitle: 'Richest in Protein',
-                        onTap: () => print('Fish'),
+                        onTap: () => _navigateToDetail(context),
                       ),
                       FoodCard(
                         title: 'Pork & Beans',
                         subtitle: 'Richer in Protein',
-                        onTap: () => print('P and B'),
+                        onTap: () => _navigateToDetail(context),
                       ),
                       FoodCard(
                         title: 'Pinakbet',
                         subtitle: 'Gulay na gulay',
-                        onTap: () => print('Gulay'),
+                        onTap: () => _navigateToDetail(context),
                       ),
                       FoodCard(
                         title: 'Baboy',
                         subtitle: 'Pig',
-                        onTap: () => print('Baboy'),
+                        onTap: () => _navigateToDetail(context),
                       ),
                     ],
                   ),
