@@ -1,7 +1,6 @@
 import 'package:meta/meta.dart';
 
 class ProfileModel {
-
   final int age;
   final String sex;
   final double height;
