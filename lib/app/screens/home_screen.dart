@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'widgets/gradient_appbar.dart';
 import 'food_screen.dart';
 
@@ -14,15 +15,26 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         elevation: 3.0,
         child: Container(
-          child: Center(
-            child: IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => FoodScreen()),
-                );
-              },
-            ),
+          child: Column(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => FoodScreen()),
+                  );
+                },
+              ),
+              Card(
+                child: Text('Daily Intake'),
+              ),
+              Card(
+                child: Text('Food Intake')
+              ),
+              Card(
+                child: Text('Recommended Intake'),
+              ),
+            ],
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
