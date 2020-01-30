@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:nutrition_app/app/screens/profile_screen.dart';
 
 // Router configuration
 final routes = [
-  { 'title': 'Profile', 'icon': Icon(LineIcons.user) },
-  { 'title': 'History', 'icon': Icon(LineIcons.history) },
-  { 'title': 'Information', 'icon': Icon(LineIcons.info) },
+  {
+    'title': 'Profile',
+    'icon': Icon(LineIcons.user),
+    'route': MaterialPageRoute(
+      builder: (BuildContext context) => ProfileScreen(),
+    ),
+  },
+  {
+    'title': 'History',
+    'icon': Icon(LineIcons.history),
+    'route': MaterialPageRoute(
+      builder: (BuildContext context) => ProfileScreen(),
+    ),
+  },
+  {
+    'title': 'Information',
+    'icon': Icon(LineIcons.info),
+    'route': MaterialPageRoute(
+      builder: (BuildContext context) => ProfileScreen(),
+    ),
+  },
 ];
 
 class AppDrawer extends StatelessWidget {
@@ -22,9 +41,7 @@ class AppDrawer extends StatelessWidget {
       ListTile(
         leading: route['icon'],
         title: Text(route['title']),
-        onTap: () {
-          print('Navigating to $route}');
-        },
+        onTap: () => Navigator.pushReplacement(context, route['route']),
       )
     ).toList();
 
