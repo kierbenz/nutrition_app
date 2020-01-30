@@ -8,7 +8,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: AppDrawer(
+        beginColor: Colors.greenAccent[400],
+        endColor: Colors.tealAccent[700],
+      ),
       appBar: GradientAppBar(
         title: Text('Home'),
         beginColor: Colors.greenAccent[400],

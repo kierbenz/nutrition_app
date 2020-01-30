@@ -8,6 +8,14 @@ final routes = [
 ];
 
 class AppDrawer extends StatelessWidget {
+  final Color beginColor;
+  final Color endColor;
+  
+  AppDrawer({
+    @required this.beginColor, 
+    @required this.endColor,
+  });
+
   List<Widget> _buildListTiles(context) =>
     routes.map((route) =>
       ListTile(
@@ -27,7 +35,11 @@ class AppDrawer extends StatelessWidget {
           DrawerHeader(
             child: Text('Drawer Header'),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [beginColor, endColor],
+              ),
             ),
           ),
           ..._buildListTiles(context),
