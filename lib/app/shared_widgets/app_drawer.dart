@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 // Router configuration
 final routes = [
-  { 'title': 'Profile' },
-  { 'title': 'History' },
-  { 'title': 'Information' },
+  { 'title': 'Profile', 'icon': Icon(LineIcons.user) },
+  { 'title': 'History', 'icon': Icon(LineIcons.history) },
+  { 'title': 'Information', 'icon': Icon(LineIcons.info) },
 ];
 
 class AppDrawer extends StatelessWidget {
@@ -19,6 +20,7 @@ class AppDrawer extends StatelessWidget {
   List<Widget> _buildListTiles(context) =>
     routes.map((route) =>
       ListTile(
+        leading: route['icon'],
         title: Text(route['title']),
         onTap: () {
           print('Navigating to $route}');
