@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
 import 'widgets/gradient_appbar.dart';
 import 'food_screen.dart';
 
@@ -7,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: GradientAppBar(
         title: Text('Home'),
         beginColor: Colors.greenAccent[400],
