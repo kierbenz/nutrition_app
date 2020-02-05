@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/app/screens/widgets/gradient_appbar.dart';
+import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
 import 'widgets/profile_info_card.dart';
 // import 'widgets/profile_form.dart';
 
@@ -19,16 +21,22 @@ class ProfileScreen extends StatelessWidget {
     info.map((data) => 
       ProfileInfoCard(
         title: data,
-        subtitle: 'Recommended Intake: 150.00; Current Intake: 100.00'  
+        subtitle: 'Recommended Intake: 150.00',
+        secondSubtitle: 'Current Intake: 100.00',  
       ),
     ).toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      drawer: AppDrawer(
+        beginColor: Colors.greenAccent[400],
+        endColor: Colors.tealAccent[700],
+      ),
+      appBar: GradientAppBar(
         title: Text('Profile'),
-        centerTitle: true,
+        beginColor: Colors.greenAccent[400],
+        endColor: Colors.tealAccent[700],
       ),
       body: SingleChildScrollView(
         child: Column(
