@@ -17,29 +17,49 @@ class HomeScreen extends StatelessWidget {
         beginColor: Colors.greenAccent[400],
         endColor: Colors.tealAccent[700],
       ),
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(height: 35.0),
+            Text(
+              'Calorie Taken',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 21.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.tealAccent[700],
+              ),
+            ),
+            Text(
+              '100.00',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 48.0,
+                fontWeight: FontWeight.w700,
+                color: Colors.tealAccent[700],
+              )
+            ),
+            Card(
+              child: Column(
+                children: <Widget>[
+                  Text('Recommended Calorie'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         elevation: 3.0,
         child: Container(
-          child: Column(
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => FoodScreen()),
-                  );
-                },
-              ),
-              Card(
-                child: Text('Daily Intake'),
-              ),
-              Card(
-                child: Text('Food Intake')
-              ),
-              Card(
-                child: Text('Recommended Intake'),
-              ),
-            ],
+          child: IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => FoodScreen()),
+              );
+            },
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
