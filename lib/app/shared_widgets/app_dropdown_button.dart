@@ -5,7 +5,7 @@ class AppDropdownButton extends StatelessWidget {
   AppDropdownButton({
     @required this.items,
     @required this.onChanged,
-    this.decoration,
+    @required this.decoration,
     this.value,
   });
 
