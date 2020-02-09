@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/app/shared_widgets/app_bar_chart.dart';
 import 'package:nutrition_app/app/shared_widgets/app_dropdown_button.dart';
 
 
@@ -92,6 +93,10 @@ class HistoryScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 15.0),
+            Expanded(
+              child: Card(child: AppBarChart(null)),
             ),
           ],
         ),
