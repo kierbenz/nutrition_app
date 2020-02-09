@@ -14,7 +14,7 @@ class ProfileDetailScreen extends StatelessWidget {
       body: WithPrimaryStack(
         primaryText: 'Save Profile',
         onPrimary: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => HomeScreen()),
           );
         },

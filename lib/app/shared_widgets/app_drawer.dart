@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:nutrition_app/app/screens/profile_screen.dart';
+import 'package:nutrition_app/app/screens/history_screen.dart';
 
 // Router configuration
 final routes = [
@@ -15,7 +16,7 @@ final routes = [
     'title': 'History',
     'icon': Icon(LineIcons.history),
     'route': MaterialPageRoute(
-      builder: (BuildContext context) => ProfileScreen(),
+      builder: (BuildContext context) => HistoryScreen(),
     ),
   },
   {
