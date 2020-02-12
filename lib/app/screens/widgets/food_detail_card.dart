@@ -13,12 +13,28 @@ class FoodDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(9.0),
+        side: BorderSide(
+          color: Colors.black26,
+          width: 1.0
+        ),
+      ),
       child: Padding(
         padding: EdgeInsets.all(15.0),
         child: Column(
           children: <Widget>[
-            Text(this.title),
-            Text(this.content),
+            Text(
+              this.content,
+              style: TextStyle(
+                fontSize: 36.0,
+                fontWeight: FontWeight.w300,
+              )  
+            ),
+            Text(
+              this.title,
+              style: TextStyle(color: Colors.black45),
+            ),
           ],
         ),
       ),

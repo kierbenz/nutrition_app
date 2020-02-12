@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/food_detail_card.dart';
+import 'widgets/food_details_column.dart';
 import 'food_screen.dart';
 
 
@@ -46,38 +46,13 @@ class FoodDetailScreen extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(top: 63.0),
+                  padding: EdgeInsets.only(
+                    top: 63.0, 
+                    left: 15.0, 
+                    right: 15.0
+                  ),
                   child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text('Information', textAlign: TextAlign.center),
-                        FoodDetailCard(
-                          title: 'Calorie Size',
-                          content: '188.20',
-                        ),
-                        FoodDetailCard(
-                          title: 'Fat Size',
-                          content: '10.00',
-                        ),
-                        FoodDetailCard(
-                          title: 'Sugar Size',
-                          content: '100.00',
-                        ),
-                        FoodDetailCard(
-                          title: 'Carb Size',
-                          content: '50.00',
-                        ),
-                        FoodDetailCard(
-                          title: 'Sodium Size',
-                          content: '25.00',
-                        ),
-                        FoodDetailCard(
-                          title: 'Cholesterol Size',
-                          content: '10.00',
-                        ),
-                      ],
-                    ),
+                    child: FoodDetailsColumn(),
                   ),
                 ),
               ),
