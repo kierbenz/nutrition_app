@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:nutrition_app/core/models/profile_model.dart';
+import 'package:nutrition_app/core/repositories/food_repository.dart';
 import 'package:nutrition_app/core/repositories/profile_repository.dart';
 import 'package:nutrition_app/app/screens/profile_detail_screen.dart';
 import 'package:nutrition_app/app/screens/home_screen.dart';
@@ -26,6 +27,7 @@ class _StartScreenState extends State<StartScreen> {
     // profile
     final ProfileRepository profileRepository = ProfileRepository();
     await profileRepository.init();
+    await FoodRepository().init();
 
     final ProfileModel profile = profileRepository.getProfile();
     if (profile == null) {
