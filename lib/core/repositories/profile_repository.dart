@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/profile_model.dart';
 
-
 class ProfileRepository {
   SharedPreferences _prefs;
   ProfileModel _profile;
+
+  // singleton
+  ProfileRepository._internal();
+  static ProfileRepository _instance = ProfileRepository._internal();
+  factory ProfileRepository() => _instance;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
