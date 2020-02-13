@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/app/shared_widgets/app_dropdown_button.dart';
 import 'package:nutrition_app/app/shared_widgets/with_primary_stack.dart';
+import 'package:nutrition_app/core/models/profile_model.dart';
+import 'package:nutrition_app/core/repositories/profile_repository.dart';
 import 'home_screen.dart';
 
-class ProfileDetailScreen extends StatelessWidget {
+class ProfileDetailScreen extends StatefulWidget {
+  @override
+  _ProfileDetailScreenState createState() => _ProfileDetailScreenState();
+}
+
+class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
+  final ProfileRepository _profileRepository = ProfileRepository();
+  final ProfileModel _profile = ProfileModel(
+    sex: 'Male',
+    activityLevel: 'Inactive',
+    goal: 'Maintain Weight'
+  );
+  
+  onSave() async {
+    await _profileRepository.setProfile(_profile);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => HomeScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,11 +34,7 @@ class ProfileDetailScreen extends StatelessWidget {
       ),
       body: WithPrimaryStack(
         primaryText: 'Save Profile',
-        onPrimary: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => HomeScreen()),
-          );
-        },
+        onPrimary: onSave,
         child: Container(
           padding: EdgeInsets.all(25.0),
           child: Column(
@@ -30,7 +47,7 @@ class ProfileDetailScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Gender',
                       ),
-                      value: 'Male',
+                      value: _profile.sex,
                       items: <DropdownMenuItem>[
                         DropdownMenuItem(
                           value: 'Male',
@@ -42,7 +59,8 @@ class ProfileDetailScreen extends StatelessWidget {
                         ),
                       ],
                       onChanged: (value) {
-                        print(value);
+                        setState(() =>
+                          _profile.sex = value);
                       },
                     ),
                   ),
@@ -54,6 +72,9 @@ class ProfileDetailScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Age',
                       ),
+                      onChanged: (text) {
+                        _profile.age = int.parse(text);
+                      },
                     ),
                   ),
                 ],
@@ -64,7 +85,7 @@ class ProfileDetailScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                   labelText: 'Activity Level',
                 ),
-                value: 'Inactive',
+                value: _profile.activityLevel,
                 items: <DropdownMenuItem>[
                   DropdownMenuItem(
                     value: 'Inactive',
@@ -88,7 +109,8 @@ class ProfileDetailScreen extends StatelessWidget {
                   ),
                 ],
                 onChanged: (value) {
-                  print(value);
+                  setState(() =>
+                    _profile.activityLevel = value);
                 },
               ),
               SizedBox(height: 15.0),
@@ -101,6 +123,9 @@ class ProfileDetailScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Height (cm)',
                       ),
+                      onChanged: (value) {
+                        _profile.height = double.parse(value);
+                      },
                     ),
                   ),
                   SizedBox(width: 15.0),
@@ -111,6 +136,9 @@ class ProfileDetailScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Weight (kg)',
                       ),
+                      onChanged: (value) {
+                        _profile.weight = double.parse(value);
+                      },
                     ),
                   ),
                 ],
@@ -121,7 +149,7 @@ class ProfileDetailScreen extends StatelessWidget {
                   border: OutlineInputBorder(),
                   labelText: 'Goal',
                 ),
-                value: 'Maintain Weight',
+                value: _profile.goal,
                 items: <DropdownMenuItem>[
                   DropdownMenuItem(
                     value: 'Lose Weight',
@@ -137,7 +165,8 @@ class ProfileDetailScreen extends StatelessWidget {
                   ),
                 ],
                 onChanged: (value) {
-                  print(value);
+                  setState(() =>
+                    _profile.goal = value);
                 },
               ),
             ],

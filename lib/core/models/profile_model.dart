@@ -1,20 +1,18 @@
-import 'package:meta/meta.dart';
-
 class ProfileModel {
-  final int age;
-  final String sex;
-  final double height;
-  final double weight;
-  final String goal;
-  final String activityLevel;
+  int age;
+  String sex;
+  double height;
+  double weight;
+  String goal;
+  String activityLevel;
   
   ProfileModel({
-    @required this.age,
-    @required this.sex,
-    @required this.height,
-    @required this.weight,
-    @required this.goal,
-    @required this.activityLevel,
+    this.age,
+    this.sex,
+    this.height,
+    this.weight,
+    this.goal,
+    this.activityLevel,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(

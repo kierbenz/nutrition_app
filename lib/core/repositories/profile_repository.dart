@@ -28,7 +28,7 @@ class ProfileRepository {
   void _loadData() {
     final profileData = _prefs.getString('profileData');
     if (profileData != null) {
-      _profile = json.decode(profileData);
+      _profile = ProfileModel.fromJson(json.decode(profileData));
     }
   }
 }
