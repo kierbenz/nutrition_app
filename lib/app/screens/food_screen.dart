@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/core/models/food_model.dart';
+import 'package:nutrition_app/core/repositories/food_repository.dart';
 import 'widgets/food_card.dart';
 import 'food_detail_screen.dart';
 
-class FoodScreen extends StatelessWidget {
-  void _navigateToDetail(BuildContext context) {
+class FoodScreen extends StatefulWidget {
+  @override
+  _FoodScreenState createState() => _FoodScreenState();
+}
+
+class _FoodScreenState extends State<FoodScreen> {
+  List<FoodModel> _foods;
+
+  void _navigateToDetail() {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => FoodDetailScreen()),
     );
+  }
+
+  List<Widget> _buildFoodCards() {
+    return _foods.map((food) =>
+      FoodCard(
+        title: food.name,
+        subtitle: '${food.totalCalories} Calories',
+        onTap: () => _navigateToDetail(),
+      )
+    ).toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _foods = FoodRepository().getFoods();
   }
 
   @override
@@ -42,43 +67,20 @@ class FoodScreen extends StatelessWidget {
               ), 
             ),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(63.0),
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(63.0),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 63.0),
-                  child: Column(
-                    children: <Widget>[
-                      FoodCard(
-                        title: 'Adobo',
-                        subtitle: 'Rich in Protein',
-                        onTap: () => _navigateToDetail(context),
-                      ),
-                      FoodCard(
-                        title: 'Fish',
-                        subtitle: 'Richest in Protein',
-                        onTap: () => _navigateToDetail(context),
-                      ),
-                      FoodCard(
-                        title: 'Pork & Beans',
-                        subtitle: 'Richer in Protein',
-                        onTap: () => _navigateToDetail(context),
-                      ),
-                      FoodCard(
-                        title: 'Pinakbet',
-                        subtitle: 'Gulay na gulay',
-                        onTap: () => _navigateToDetail(context),
-                      ),
-                      FoodCard(
-                        title: 'Baboy',
-                        subtitle: 'Pig',
-                        onTap: () => _navigateToDetail(context),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 25.0,
+                      horizontal: 11.0,
+                    ),
+                    child: Column(children: _buildFoodCards()),
                   ),
                 ),
               ), 
