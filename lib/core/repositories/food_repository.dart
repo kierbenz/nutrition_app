@@ -20,4 +20,8 @@ class FoodRepository {
   List<FoodModel> getFoods() {
     return _foods;
   }
+
+  FoodModel getFood(String name) {
+    return _foods.firstWhere((food) => food.name == name);
+  }
 }

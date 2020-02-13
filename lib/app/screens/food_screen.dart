@@ -12,9 +12,9 @@ class FoodScreen extends StatefulWidget {
 class _FoodScreenState extends State<FoodScreen> {
   List<FoodModel> _foods;
 
-  void _navigateToDetail() {
+  void _navigateToDetail(String foodName) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => FoodDetailScreen()),
+      MaterialPageRoute(builder: (_) => FoodDetailScreen(name: foodName)),
     );
   }
 
@@ -23,7 +23,7 @@ class _FoodScreenState extends State<FoodScreen> {
       FoodCard(
         title: food.name,
         subtitle: '${food.totalCalories} Calories',
-        onTap: () => _navigateToDetail(),
+        onTap: () => _navigateToDetail(food.name),
       )
     ).toList();
   }
