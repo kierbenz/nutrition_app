@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/app/screens/home_screen.dart';
 import 'package:nutrition_app/core/models/food_model.dart';
+import 'package:nutrition_app/core/models/intake_model.dart';
 import 'package:nutrition_app/core/repositories/food_repository.dart';
+import 'package:nutrition_app/core/repositories/intake_repository.dart';
 import 'widgets/food_details_column.dart';
 import 'food_screen.dart';
 
@@ -17,6 +20,29 @@ class FoodDetailScreen extends StatefulWidget {
 
 class _FoodDetailScreenState extends State<FoodDetailScreen> {
   FoodModel _food;
+
+  void _onAdd() {
+    IntakeRepository().addIntake(
+      IntakeModel(
+        foodName: _food.name,
+        totalCalories: _food.totalCalories,
+        totalFat: _food.totalFat,
+        saturatedFat: _food.saturatedFat,
+        transFat: _food.transFat,
+        cholesterol: _food.cholesterol,
+        sodium: _food.sodium,
+        totalCarbs: _food.totalCarbs,
+        dietaryFiber: _food.dietaryFiber,
+        sugars: _food.sugars,
+        addedSugars: _food.addedSugars,
+        protein: _food.protein,
+        postedOn: DateTime.now(),
+      )
+    );
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => HomeScreen()),
+    );
+  }
 
   @override
   void initState() {
@@ -103,12 +129,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
         ),
         FlatButton(
           child: Text('Add'),
-          onPressed: () {
-            print('Added');
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => FoodScreen()),
-            );
-          }
+          onPressed: _onAdd,
         ),
       ],
     );
