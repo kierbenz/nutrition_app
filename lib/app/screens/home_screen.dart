@@ -92,28 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 3.0,
-        child: Container(
-          child: IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => FoodScreen()),
-              );
-            },
-          ),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: <Color>[
-                Colors.greenAccent[400],
-                Colors.tealAccent[700],
-              ],
-            ),
-          ),
-        ),
-        onPressed: () { print('yeaah'); },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.tealAccent[700],
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => FoodScreen()),
+          );
+        },
       ),
     );
   }
