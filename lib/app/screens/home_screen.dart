@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nutrition_app/app/screens/widgets/food_detail_card.dart';
 import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
+import 'package:nutrition_app/core/models/intake_model.dart';
 import '../../core/repositories/intake_repository.dart';
 import '../../core/repositories/profile_repository.dart';
 import 'widgets/gradient_appbar.dart';
@@ -14,12 +16,55 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double _caloriesTaken = 0.0;
   double _recommendedCalories = 0.0;
+  List<IntakeModel> _intakesToday = [];
+
   @override
   void initState() {
     super.initState();
-    _caloriesTaken = IntakeRepository().getCaloriesTaken();
+    _caloriesTaken = IntakeRepository().getCaloriesTakenToday();
+    _intakesToday = IntakeRepository().getIntakesToday();
     _recommendedCalories = ProfileRepository().getRecommendedIntake();
   }
+  
+  List<Widget> _buildFoodsTaken() {
+    List<Widget> foodsTaken = _intakesToday.map((intake) =>
+      FoodDetailCard(
+        title: '= ${intake.totalCalories.toStringAsFixed(2)} calories',
+        content: intake.foodName,
+      )
+    ).toList();
+
+    if (foodsTaken.length > 0) {
+      return <Widget>[
+        Text(
+          'Foods Taken',
+          style: TextStyle(
+            fontSize: 21.0,
+            color: Colors.black45,
+          ),
+        ),
+        SizedBox(height: 15.0),
+      ] + foodsTaken;
+    }
+
+    return [
+      Text(
+        'Foods Taken',
+        style: TextStyle(
+          fontSize: 21.0,
+          color: Colors.black45,
+        ),
+      ),
+      SizedBox(height: 15.0),
+      Text(
+        'Please log your intakes.',
+        style: TextStyle(
+          color: Colors.black45,
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,61 +78,70 @@ class _HomeScreenState extends State<HomeScreen> {
         endColor: Colors.tealAccent[700],
       ),
       body: Container(
+      child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(height: 35.0),
-            Text(
-              'Calorie Taken',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 21.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.tealAccent[700],
-              ),
-            ),
-            Text(
-              _caloriesTaken.toStringAsFixed(2),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 48.0,
-                fontWeight: FontWeight.w700,
-                color: Colors.tealAccent[700],
-              )
-            ),
-            SizedBox(height: 35.0),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
-                  top: BorderSide(width: 5.0, color: Colors.blueAccent),
-                  bottom: BorderSide(width: 1.0, color: Colors.black12),
-                  left: BorderSide(width: 1.0, color: Colors.black12),
-                  right: BorderSide(width: 1.0, color: Colors.black12),
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(height: 35.0),
+              Text(
+                'Calorie Taken',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 21.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.tealAccent[700],
                 ),
               ),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 15.0),
-                  Text(
-                    'Recommended Calorie',
-                    style: TextStyle(
-                      fontSize: 21.0,
-                      color: Colors.black45,
-                    ),
-                  ),
-                  Text(
-                    _recommendedCalories.toStringAsFixed(2),
-                    style: TextStyle(
-                      fontSize: 36.0,
-                      color: Colors.teal,
-                    )
-                  ),
-                  SizedBox(height: 15.0),
-                ],
+              Text(
+                _caloriesTaken.toStringAsFixed(2),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 48.0,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.tealAccent[700],
+                )
               ),
-            ),
-          ],
+              SizedBox(height: 35.0),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    top: BorderSide(width: 5.0, color: Colors.blueAccent),
+                    bottom: BorderSide(width: 1.0, color: Colors.black12),
+                    left: BorderSide(width: 1.0, color: Colors.black12),
+                    right: BorderSide(width: 1.0, color: Colors.black12),
+                  ),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 15.0),
+                    Text(
+                      'Recommended Daily Calorie',
+                      style: TextStyle(
+                        fontSize: 21.0,
+                        color: Colors.black45,
+                      ),
+                    ),
+                    Text(
+                      _recommendedCalories.toStringAsFixed(2),
+                      style: TextStyle(
+                        fontSize: 36.0,
+                        color: Colors.teal,
+                      )
+                    ),
+                    SizedBox(height: 15.0),
+                  ],
+                ),
+              ),
+              SizedBox(height: 25.0),
+              Container(
+                child: Column(
+                  children: _buildFoodsTaken(),
+                ),
+              ),
+              SizedBox(height: 35.0),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

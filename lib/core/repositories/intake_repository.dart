@@ -33,6 +33,19 @@ class IntakeRepository {
     return caloriesTaken;
   }
 
+  double getCaloriesTakenToday() {
+    double caloriesTaken = 0.0;
+    final formatter = DateFormat('yyyy-MM-dd');
+    final String now = formatter.format(DateTime.now());
+    _intakes.forEach((intake) {
+      final postingDate = formatter.format(intake.postedOn);
+      if (postingDate == now) {
+        caloriesTaken = caloriesTaken + intake.totalCalories;
+      }
+    });
+    return caloriesTaken;
+  }
+
   double _getRecommended(calories, category) {
     if (category == 'Fat') {
       return calories * 0.20 / 9;
@@ -108,6 +121,19 @@ class IntakeRepository {
     });
 
     return takenByWeek;
+  }
+
+  List<IntakeModel> getIntakesToday() {
+    List<IntakeModel> intakes = [];
+    final formatter = DateFormat('yyyy-MM-dd');
+    final String now = formatter.format(DateTime.now());
+    _intakes.forEach((intake) {
+      final String postedDate = formatter.format(intake.postedOn);
+      if (postedDate == now) {
+        intakes.add(intake);
+      }
+    });
+    return intakes;
   }
 
   List<String> _getDateRangeFromNow(days) {
