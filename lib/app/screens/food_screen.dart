@@ -93,9 +93,7 @@ class _FoodScreenState extends State<FoodScreen> {
         FlatButton(
           child: Text('Back'),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => HomeScreen()),
-            );
+            Navigator.of(context).pushReplacementNamed('/');
           },
         )
       ],

@@ -39,9 +39,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
         postedOn: DateTime.now(),
       )
     );
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => HomeScreen()),
-    );
+    Navigator.of(context).pushReplacementNamed('/');
   }
 
   @override
