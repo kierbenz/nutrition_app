@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:nutrition_app/core/models/profile_intake_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nutrition_app/core/models/intake_model.dart';
@@ -89,6 +90,56 @@ class IntakeRepository {
       sodium: takenSodium,
       protein: takenProtein,
     );
+  }
+
+  Map<String, double> getTakenByWeek(category) {
+    Map<String, double> takenByWeek = {};
+    
+    List<String> weekdates = _getDateRangeFromNow(6);
+    weekdates.forEach((weekdate) => takenByWeek[weekdate] = 0.0);
+
+    final formatter = DateFormat('MM-dd');
+    _intakes.forEach((intake) {
+      String intakeDate = formatter.format(intake.postedOn);
+      if (takenByWeek.containsKey(intakeDate) == true) {
+        takenByWeek[intakeDate] = takenByWeek[intakeDate] + 
+          _getIntakeByCategory(intake, category);
+      }
+    });
+
+    return takenByWeek;
+  }
+
+  List<String> _getDateRangeFromNow(days) {
+    final today = DateTime.now();
+    List<DateTime> dateTimes = List.generate(days, (i) =>
+      today.subtract(Duration(days: days - i)));
+    dateTimes.add(today);
+    final formatter = DateFormat('MM-dd');
+    return dateTimes.map((dateTime) =>
+      formatter.format(dateTime)
+    ).toList();
+  }
+
+  double _getIntakeByCategory(IntakeModel intake, category) {
+    if (category == 'Calorie') {
+      return intake.totalCalories;
+    } else if (category == 'Fat') {
+      return intake.totalFat;
+    } else if (category == 'Saturated') {
+      return intake.saturatedFat;
+    } else if (category == 'Trans') {
+      return intake.transFat;
+    } else if (category == 'Carbohydrates') {
+      return intake.totalCarbs;
+    } else if (category == 'Added Sugar') {
+      return intake.addedSugars;
+    } else if (category == 'Sodium') {
+      return intake.sodium;
+    } else if (category == 'Protein') {
+      return intake.protein;
+    }
+    return 0.0;
   }
 
   void _loadData() {

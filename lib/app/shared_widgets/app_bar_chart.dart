@@ -3,10 +3,8 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 
 class AppBarChart extends StatelessWidget {
-  final List<charts.Series> seriesList;
-  
-  AppBarChart(this.seriesList);
-
+  final List<OrdinalData> data;
+  AppBarChart({@required this.data});
   @override
   Widget build(BuildContext context) {
     return charts.BarChart(
@@ -15,10 +13,7 @@ class AppBarChart extends StatelessWidget {
           colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
           domainFn: (OrdinalData data, _) => data.category,
           measureFn: (OrdinalData data, _) => data.data,
-          data: [
-            OrdinalData('Tuesday', 100),
-            OrdinalData('Wednesday', 200),
-          ],
+          data: data,
         ),
       ],
     );
@@ -28,5 +23,5 @@ class AppBarChart extends StatelessWidget {
 class OrdinalData {
   OrdinalData(this.category, this.data);
   final String category;
-  final int data;
+  final double data;
 }

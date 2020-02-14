@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/app/shared_widgets/app_bar_chart.dart';
 import 'package:nutrition_app/app/shared_widgets/app_dropdown_button.dart';
+import 'package:nutrition_app/core/repositories/intake_repository.dart';
 
 import '../shared_widgets/app_drawer.dart';
 import 'widgets/gradient_appbar.dart';
 
 
-// TODO: check range
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
+  @override
+  _HistoryScreenState createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  String _range = '1 Week';
+  String _category = 'Calorie';
+  Map<String, double> _taken;
+  @override
+  void initState() {
+    super.initState();
+    _reloadCharts();
+  }
+
+  List<OrdinalData> _buildOrdinalData() {
+    final List<OrdinalData> ordinalData = [];
+    _taken.forEach((key, value) => ordinalData.add(OrdinalData(key, value)));
+    return ordinalData;
+  }
 
   List<DropdownMenuItem> _buildCategories(context) {
     const categories = [
@@ -32,6 +51,10 @@ class HistoryScreen extends StatelessWidget {
     );
 
     return menuItems;
+  }
+
+  void _reloadCharts() {
+    _taken = IntakeRepository().getTakenByWeek(_category);
   }
 
   @override
@@ -93,9 +116,12 @@ class HistoryScreen extends StatelessWidget {
                       border: OutlineInputBorder(),
                       labelText: 'Category',
                     ),
-                    value: 'Calorie',
+                    value: _category,
                     onChanged: (value) {
-                      print(value);
+                      setState(() {
+                        _category = value;
+                        _reloadCharts();
+                      });
                     },
                     items: _buildCategories(context),
                   ),
@@ -104,7 +130,11 @@ class HistoryScreen extends StatelessWidget {
             ),
             SizedBox(height: 15.0),
             Expanded(
-              child: Card(child: AppBarChart(null)),
+              child: Card(
+                child: AppBarChart(
+                  data: _buildOrdinalData(),
+                ),
+              ),
             ),
           ],
         ),
