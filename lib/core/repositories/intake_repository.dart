@@ -23,6 +23,14 @@ class IntakeRepository {
     _prefs.setString('intakeData', json.encode(intakes));
   }
 
+  getCaloriesTaken() {
+    double caloriesTaken = 0.0;
+    _intakes.forEach((intake) {
+      caloriesTaken = caloriesTaken + intake.totalCalories;
+    });
+    return caloriesTaken;
+  }
+
   void _loadData() {
     final intakeData = _prefs.getString('intakeData');
     if (intakeData != null) {

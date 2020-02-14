@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/core/models/food_model.dart';
 import 'package:nutrition_app/core/repositories/food_repository.dart';
+import 'home_screen.dart';
 import 'widgets/food_card.dart';
 import 'food_detail_screen.dart';
 
@@ -88,6 +89,16 @@ class _FoodScreenState extends State<FoodScreen> {
           ],
         ),
       ),
+      persistentFooterButtons: <Widget>[
+        FlatButton(
+          child: Text('Back'),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => HomeScreen()),
+            );
+          },
+        )
+      ],
     );
   }
 }

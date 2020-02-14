@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/widgets.dart';
 import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
+import '../../core/repositories/intake_repository.dart';
+import '../../core/repositories/profile_repository.dart';
 import 'widgets/gradient_appbar.dart';
 import 'food_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double _caloriesTaken = 0.0;
+  double _recommendedCalories = 0.0;
+  @override
+  void initState() {
+    super.initState();
+    _caloriesTaken = IntakeRepository().getCaloriesTaken();
+    _recommendedCalories = ProfileRepository().getRecommendedIntake();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +47,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Text(
-              '100.00',
+              _caloriesTaken.toStringAsFixed(2),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 48.0,
@@ -40,10 +55,35 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.tealAccent[700],
               )
             ),
-            Card(
+            SizedBox(height: 35.0),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(width: 5.0, color: Colors.blueAccent),
+                  bottom: BorderSide(width: 1.0, color: Colors.black12),
+                  left: BorderSide(width: 1.0, color: Colors.black12),
+                  right: BorderSide(width: 1.0, color: Colors.black12),
+                ),
+              ),
               child: Column(
                 children: <Widget>[
-                  Text('Recommended Calorie'),
+                  SizedBox(height: 15.0),
+                  Text(
+                    'Recommended Calorie',
+                    style: TextStyle(
+                      fontSize: 21.0,
+                      color: Colors.black45,
+                    ),
+                  ),
+                  Text(
+                    _recommendedCalories.toStringAsFixed(2),
+                    style: TextStyle(
+                      fontSize: 36.0,
+                      color: Colors.teal,
+                    )
+                  ),
+                  SizedBox(height: 15.0),
                 ],
               ),
             ),
@@ -56,7 +96,7 @@ class HomeScreen extends StatelessWidget {
           child: IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).push(
+              Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (_) => FoodScreen()),
               );
             },
