@@ -6,11 +6,13 @@ class ProfileInfoCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String secondSubtitle;
+  final String thirdSubtitle;
 
   ProfileInfoCard({
     @required this.title,
     @required this.subtitle,
     this.secondSubtitle,
+    this.thirdSubtitle,
   });
 
   @override
@@ -30,9 +32,10 @@ class ProfileInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(subtitle),
-                  Text(secondSubtitle)
+                  Text(secondSubtitle),
+                  Text(thirdSubtitle),
                 ],
-              )
+              ),
             ),
           ],
         ),

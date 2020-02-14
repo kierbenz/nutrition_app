@@ -3,8 +3,17 @@ import 'package:line_icons/line_icons.dart';
 import 'package:nutrition_app/app/screens/profile_screen.dart';
 import 'package:nutrition_app/app/screens/history_screen.dart';
 
+import '../screens/home_screen.dart';
+
 // Router configuration
 final routes = [
+  {
+    'title': 'Home',
+    'icon': Icon(LineIcons.info),
+    'route': MaterialPageRoute(
+      builder: (BuildContext context) => HomeScreen(),
+    ),
+  },
   {
     'title': 'Profile',
     'icon': Icon(LineIcons.user),
@@ -17,13 +26,6 @@ final routes = [
     'icon': Icon(LineIcons.history),
     'route': MaterialPageRoute(
       builder: (BuildContext context) => HistoryScreen(),
-    ),
-  },
-  {
-    'title': 'Information',
-    'icon': Icon(LineIcons.info),
-    'route': MaterialPageRoute(
-      builder: (BuildContext context) => ProfileScreen(),
     ),
   },
 ];
