@@ -7,6 +7,8 @@ import '../../core/repositories/intake_repository.dart';
 import '../../core/repositories/profile_repository.dart';
 import 'widgets/gradient_appbar.dart';
 import 'food_screen.dart';
+import 'recommendation_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,15 +19,31 @@ class _HomeScreenState extends State<HomeScreen> {
   double _caloriesTaken = 0.0;
   double _recommendedCalories = 0.0;
   List<IntakeModel> _intakesToday = [];
+  List<Map> _recommendations = [];
 
   @override
   void initState() {
     super.initState();
     _caloriesTaken = IntakeRepository().getCaloriesTakenToday();
     _intakesToday = IntakeRepository().getIntakesToday();
+    _recommendations = IntakeRepository().getRecommendations();
     _recommendedCalories = ProfileRepository().getRecommendedIntake();
   }
   
+  void _addNewIntake() {
+    if (_recommendations == null) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => FoodScreen()),
+      );    
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => RecommendationScreen(
+          recommendations: _recommendations,
+        )),
+      );  
+    }
+  }
+
   List<Widget> _buildFoodsTaken() {
     List<Widget> foodsTaken = _intakesToday.map((intake) =>
       FoodDetailCard(
@@ -148,11 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 3.0,
         child: Icon(Icons.add),
         backgroundColor: Colors.tealAccent[700],
-        onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => FoodScreen()),
-          );
-        },
+        onPressed: _addNewIntake,
       ),
     );
   }

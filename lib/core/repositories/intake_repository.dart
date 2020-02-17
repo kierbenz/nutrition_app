@@ -136,6 +136,17 @@ class IntakeRepository {
     return intakes;
   }
 
+
+  ///
+  /// Returns the excess of food intakes
+  /// 
+  List<Map> getRecommendations() {
+    return [
+      {'category': 'Fat', 'value': 100.00},
+      {'category': 'Protein', 'value': 50.00},
+    ];
+  }
+
   List<String> _getDateRangeFromNow(days) {
     final today = DateTime.now();
     List<DateTime> dateTimes = List.generate(days, (i) =>
