@@ -54,7 +54,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   void _reloadCharts() {
-    _taken = IntakeRepository().getTakenByWeek(_category);
+    if (_range == '1 Week') {
+      _taken = IntakeRepository().getTakenByWeek(_category);
+    } else if (_range == '5 Months') {
+      _taken = IntakeRepository().getTakenByMonthly(_category);
+    }
   }
 
   @override
@@ -81,9 +85,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       border: OutlineInputBorder(),
                       labelText: 'Range',
                     ),
-                    value: '1 Week',
+                    value: _range,
                     onChanged: (value) {
-                      print(value);
+                      setState(() {
+                        _range = value;
+                        _reloadCharts();
+                      });
                     },
                     items: <DropdownMenuItem>[
                       DropdownMenuItem(
@@ -91,20 +98,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         child: Text('1 Week'),
                       ),
                       DropdownMenuItem(
-                        value: '1 Month',
-                        child: Text('1 Month'),
-                      ),
-                      DropdownMenuItem(
-                        value: '3 Months',
-                        child: Text('3 Months'),
-                      ),
-                      DropdownMenuItem(
-                        value: '6 Months',
-                        child: Text('6 Months'),
-                      ),
-                      DropdownMenuItem(
-                        value: '1 Year',
-                        child: Text('1 Year'),
+                        value: '5 Months',
+                        child: Text('5 Months'),
                       ),
                     ],
                   ),

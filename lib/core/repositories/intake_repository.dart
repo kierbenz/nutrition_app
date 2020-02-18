@@ -127,6 +127,22 @@ class IntakeRepository {
     return takenByWeek;
   }
 
+  Map<String, double> getTakenByMonthly(category) {
+    Map<String, double> takenByMonthly = {};
+    List<String> monthdates = _getMonthRangeFromNow(5);
+    monthdates.forEach((monthdate) => takenByMonthly[monthdate] = 0.0);
+
+    final formatter = DateFormat('MM-yyyy');
+    _intakes.forEach((intake) {
+      String intakeDate = formatter.format(intake.postedOn);
+      if (takenByMonthly.containsKey(intakeDate) == true) {
+        takenByMonthly[intakeDate] = takenByMonthly[intakeDate] + 
+          _getIntakeByCategory(intake, category);
+      }
+    });
+    return takenByMonthly;
+  }
+
   List<IntakeModel> getIntakesToday() {
     List<IntakeModel> intakes = [];
     final formatter = DateFormat('yyyy-MM-dd');
@@ -164,6 +180,21 @@ class IntakeRepository {
     dateTimes.add(today);
     final formatter = DateFormat('MM-dd');
     return dateTimes.map((dateTime) =>
+      formatter.format(dateTime)
+    ).toList();
+  }
+
+  List<String> _getMonthRangeFromNow(months) {
+    final today = DateTime.now();
+    List<DateTime> dateTimes = List.generate(months, (i) {
+      return DateTime(
+        today.year,
+        today.month - i,
+        today.day
+      );
+    });
+    final formatter = DateFormat('MM-yyyy');
+    return dateTimes.reversed.map((dateTime) =>
       formatter.format(dateTime)
     ).toList();
   }
