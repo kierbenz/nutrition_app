@@ -9,7 +9,7 @@ final routes = [
     'route': '/home',
   },
   {
-    'title': 'Profile',
+    'title': 'Profile Intake',
     'icon': Icon(LineIcons.user),
     'route': '/profile',
   },
