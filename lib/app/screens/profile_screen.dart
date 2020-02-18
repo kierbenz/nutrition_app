@@ -38,8 +38,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _taken = IntakeRepository().getTakenIntake();
   }
 
-  String _getSurplusDeficitText(double recommended, double taken) {
-    return (recommended - taken).toStringAsFixed(2);
+  Text _getSurplusDeficitText(double recommended, double taken) {
+    final double intakeDifference = recommended - taken;
+    if (intakeDifference < 0) {
+      return Text(
+        'Deficit: ${intakeDifference.toStringAsFixed(2)}',
+        style: TextStyle(color: Colors.red),
+      );
+    }
+    return Text(
+      'Surplus: ${intakeDifference.toStringAsFixed(2)}',
+      style: TextStyle(color: Colors.green),
+    );
   }
 
   @override
@@ -61,43 +71,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Fat (g)',
               subtitle: 'Recommended: ${_recommended.fat.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.fat.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.fat, _taken.fat)}',
+              othersText: _getSurplusDeficitText(_recommended.fat, _taken.fat),
             ),
             ProfileInfoCard(
               title: 'Saturated Fat (mg)',
               subtitle: 'Recommended: ${_recommended.saturatedFat.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.saturatedFat.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.saturatedFat, _taken.saturatedFat)}',
+              othersText: _getSurplusDeficitText(_recommended.saturatedFat, _taken.saturatedFat),
             ),
             ProfileInfoCard(
               title: 'Trans Fat (mg)',
               subtitle: 'Recommended: ${_recommended.transFat.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.transFat.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.transFat, _taken.transFat)}',
+              othersText: _getSurplusDeficitText(_recommended.transFat, _taken.transFat),
             ),
             ProfileInfoCard(
               title: 'Carbohydrates (g)',
               subtitle: 'Recommended: ${_recommended.carbs.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.carbs.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.carbs, _taken.carbs)}',
+              othersText: _getSurplusDeficitText(_recommended.carbs, _taken.carbs),
             ),
             ProfileInfoCard(
               title: 'Added Sugar (g)',
               subtitle: 'Recommended: ${_recommended.addedSugar.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.addedSugar.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.addedSugar, _taken.addedSugar)}',
+              othersText: _getSurplusDeficitText(_recommended.addedSugar, _taken.addedSugar),
             ),
             ProfileInfoCard(
               title: 'Sodium (mg)',
               subtitle: 'Recommended: ${_recommended.sodium.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.sodium.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.sodium, _taken.sodium)}',
+              othersText: _getSurplusDeficitText(_recommended.sodium, _taken.sodium),
             ),
             ProfileInfoCard(
               title: 'Protein (g)',
               subtitle: 'Recommended: ${_recommended.protein.toStringAsFixed(2)}',
               secondSubtitle: 'Current: ${_taken.protein.toStringAsFixed(2)}',
-              thirdSubtitle: 'Surplus/Deficit: ${_getSurplusDeficitText(_recommended.protein, _taken.protein)}',
+              othersText: _getSurplusDeficitText(_recommended.protein, _taken.protein),
             ),
           ],
         ),

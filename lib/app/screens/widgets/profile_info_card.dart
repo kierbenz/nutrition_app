@@ -7,12 +7,14 @@ class ProfileInfoCard extends StatelessWidget {
   final String subtitle;
   final String secondSubtitle;
   final String thirdSubtitle;
+  final Text othersText;
 
   ProfileInfoCard({
     @required this.title,
     @required this.subtitle,
     this.secondSubtitle,
     this.thirdSubtitle,
+    this.othersText,
   });
 
   @override
@@ -33,7 +35,8 @@ class ProfileInfoCard extends StatelessWidget {
                 children: <Widget>[
                   Text(subtitle),
                   Text(secondSubtitle),
-                  Text(thirdSubtitle),
+                  // Text(thirdSubtitle),
+                  othersText,
                 ],
               ),
             ),
