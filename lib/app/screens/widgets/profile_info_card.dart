@@ -8,6 +8,8 @@ class ProfileInfoCard extends StatelessWidget {
   final String secondSubtitle;
   final String thirdSubtitle;
   final Text othersText;
+  final Color color;
+  final Color textColor;
 
   ProfileInfoCard({
     @required this.title,
@@ -15,11 +17,14 @@ class ProfileInfoCard extends StatelessWidget {
     this.secondSubtitle,
     this.thirdSubtitle,
     this.othersText,
+    this.color,
+    this.textColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color,
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 7.0,
@@ -28,13 +33,13 @@ class ProfileInfoCard extends StatelessWidget {
         child: Column(
           children: <Widget>[
             ListTile(
-              leading: Icon(LineIcons.spoon),
-              title: Text(title),
+              leading: Icon(LineIcons.spoon, size: 36.0),
+              title: Text(title, style: TextStyle(color: textColor)),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(subtitle),
-                  Text(secondSubtitle),
+                  Text(subtitle, style: TextStyle(color: textColor)),
+                  Text(secondSubtitle, style: TextStyle(color: textColor)),
                   // Text(thirdSubtitle),
                   othersText,
                 ],
