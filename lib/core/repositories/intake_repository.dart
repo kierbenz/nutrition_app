@@ -1,21 +1,25 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 import 'package:nutrition_app/core/models/profile_intake_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nutrition_app/core/models/intake_model.dart';
+import 'package:nutrition_app/core/models/recommendation_model.dart';
 
 
 class IntakeRepository {
   SharedPreferences _prefs;
   List<IntakeModel> _intakes;
+  List<RecommendationModel> _recommendations;
 
   // singleton
-  IntakeRepository._internal() : _intakes = [];
+  IntakeRepository._internal() : _intakes = [], _recommendations = [];
   static IntakeRepository _instance = IntakeRepository._internal();
   factory IntakeRepository() => _instance;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
+    await _loadRecommendations();
     _loadData();
   }
 
@@ -141,9 +145,15 @@ class IntakeRepository {
   /// Returns the excess of food intakes
   /// 
   List<Map> getRecommendations() {
+    final fatRecommendation = _recommendations
+      .firstWhere((recommendation) => recommendation.category == 'Fat')
+      .toJson();
+    final proteinRecommendation = _recommendations
+      .firstWhere((recommendation) => recommendation.category == 'Protein')
+      .toJson();
     return [
-      {'category': 'Fat', 'value': 100.00},
-      {'category': 'Protein', 'value': 50.00},
+      fatRecommendation..addAll({'value': 100.00}),
+      proteinRecommendation..addAll({'value': 75.0}),
     ];
   }
 
@@ -185,5 +195,11 @@ class IntakeRepository {
       List<dynamic> intakes = json.decode(intakeData);
       _intakes = intakes.map((intake) => IntakeModel.fromJson(intake)).toList();
     }
+  }
+
+  Future<void> _loadRecommendations() async {
+    String data = await rootBundle.loadString('assets/recommendations.json');
+    List<dynamic> recommendations = json.decode(data);
+    _recommendations = recommendations.map((recommendation) => RecommendationModel.fromJson(recommendation)).toList();
   }
 }

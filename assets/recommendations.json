@@ -1,0 +1,30 @@
+[
+  {
+    "category": "Fat",
+    "recommendation": "Fat is not good for the health." 
+  },
+  {
+    "category": "Sat",
+    "recommendation": "Saturated Fat is not good for the health."
+  },
+  {
+    "category": "Trans",
+    "recommendation": "Trans Fat is not good for the health."
+  },
+  {
+    "category": "Carbs",
+    "recommendation": "Carbohydrates is not good for the health."
+  },
+  {
+    "category": "Added Sugar",
+    "recommendation": "Added Sugar is not good for the health."
+  },
+  {
+    "category": "Sodium",
+    "recommendation": "Sodium is not good for the health."
+  },
+  {
+    "category": "Protein",
+    "recommendation": "Protein is not good for the health."
+  }
+]

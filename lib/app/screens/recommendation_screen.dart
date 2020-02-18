@@ -55,12 +55,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               ),
               SizedBox(height: 35.0),
               Text(
-                'Excess ${recommendation['category']} of ${recommendation["value"]}',
+                'Excess ${recommendation['category']} of ${recommendation['value']}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32.0,
                 ),
               ),
+              SizedBox(height: 10.0),
+              Text('${recommendation['recommendation']}'),
             ],
           ),
         ),
