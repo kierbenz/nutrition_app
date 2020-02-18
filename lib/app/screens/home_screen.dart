@@ -31,7 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   
   void _addNewIntake() {
-    if (_recommendations == null) {
+    double remaining = _recommendedCalories - _caloriesTaken;
+    if (remaining > 0) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => FoodScreen()),
       );    
@@ -83,6 +84,16 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
   }
 
+  Color _getColorCalorieTaken() {
+    // Range for indicator
+    double lessThan = _recommendedCalories - 200;
+    double greaterThan = _recommendedCalories + 200;
+    if (_caloriesTaken > lessThan && _caloriesTaken < greaterThan) {
+      return Colors.red;
+    }
+    return Colors.tealAccent[700];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 21.0,
                   fontWeight: FontWeight.w500,
-                  color: Colors.tealAccent[700],
+                  color: _getColorCalorieTaken(),
                 ),
               ),
               Text(
@@ -116,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 48.0,
                   fontWeight: FontWeight.w700,
-                  color: Colors.tealAccent[700],
+                  color: _getColorCalorieTaken(),
                 )
               ),
               SizedBox(height: 35.0),
