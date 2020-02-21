@@ -1,16 +1,14 @@
 # nutrition_app
 
-A new Flutter project.
+Nutrition App, a thesis proof-of-concept.
 
-## Getting Started
+# What I've Learned
 
-This project is a starting point for a Flutter application.
+- Doing a `charts_flutter` package
+- Doing a `SchedulerBinding.instance.addPostFrameCallback()` on `initState()`
+- Doing a `Stack`, a Flutter widget
 
-A few resources to get you started if this is your first Flutter project:
+# Version 1.2.0
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Update Profile Info Card with `Color`
+- Update Calorie Intake with `Color`
