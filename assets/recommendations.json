@@ -1,30 +1,26 @@
 [
   {
-    "category": "Fat",
-    "recommendation": "Fat is not good for the health." 
-  },
-  {
     "category": "Sat",
-    "recommendation": "Saturated Fat is not good for the health."
+    "recommendation": "You have exceeded the recommended saturated fat intake. Excessive saturated fat intake raises cholesterol levels and increases the risk of heart disease and stroke. Saturated fats are mostly found in high-fat meats (e.g. sisig, humba) and dairy products. Obtain healthier fats from fruits such as avocadoes and nuts." 
   },
   {
     "category": "Trans",
-    "recommendation": "Trans Fat is not good for the health."
+    "recommendation": "You have exceeded the recommended trans fat intake. Excessive trans fat intake increases the risk of heart disease, stroke, and type 2 diabetes. Trans fats can be found in most fried foods and baked goods including cakes, biscuites, pizzas, margarines, etc. Obtain healthier fats from fruits such as avocadoes and nuts."
   },
   {
     "category": "Carbs",
-    "recommendation": "Carbohydrates is not good for the health."
+    "recommendation": "You have exceeded the recommended carbohydrate intake. Carbs should come from healthy sources such as brown rice, sweet potatoes, fruits, and vegetables. Simple carbs such as white rice an white bread increases insulin levels and fat storage."
   },
   {
     "category": "Added Sugar",
-    "recommendation": "Added Sugar is not good for the health."
+    "recommendation": "You have exceeded the recommended added sugar intake. Excessive added sugar intake increases the risk of type 2 diabetes, heart disease, and causes the insulin levels to spike. Added sugars are sugars that are being added in the food during preparation such as those found in soft drinks, candies, sweet pastries, and etc. Substitute desserts for fruits to obtain naturally occuring healthy sugars."
   },
   {
     "category": "Sodium",
-    "recommendation": "Sodium is not good for the health."
+    "recommendation": "You have exceeded the recommended sodium intake. Excessive sodium intake can lead to a number of health complications including high blood pressure, stroke, heart failure, kindey-related problems, and headaches. Sodium mainly comes from the salt in our food. Avoid foods that contain a lot of salt and seasonings such as processed foods, canned foods, junk foods, etc."
   },
   {
     "category": "Protein",
-    "recommendation": "Protein is not good for the health."
+    "recommendation": "You have exceeded the recommended protein intake. Excessive protein intake can lead to a number of health complications including high cholesterol level, increased risk of cancer, kidney disease and kidney stones, constipation, and cardiovascular disease. Protein is found in meats, fish, poultry, eggs, and dairy. It can also be found on plants like legumes (beans and peanutes). Your protein requirements should come from both animal and plant sources."
   }
 ]
