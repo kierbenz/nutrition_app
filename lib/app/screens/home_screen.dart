@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   
   void _addNewIntake() {
     double remaining = _recommendedCalories - _caloriesTaken;
-    if (remaining > 0) {
+    if (remaining > 0 || _recommendations.isEmpty) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => FoodScreen()),
       );    
