@@ -26,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _caloriesTaken = IntakeRepository().getCaloriesTakenToday();
     _intakesToday = IntakeRepository().getIntakesToday();
-    _recommendations = IntakeRepository().getRecommendations();
     _recommendedCalories = ProfileRepository().getRecommendedIntake();
+    _recommendations = IntakeRepository()
+        .getRecommendations(_recommendedCalories);
   }
   
   void _addNewIntake() {

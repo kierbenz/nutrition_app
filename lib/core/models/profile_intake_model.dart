@@ -17,4 +17,14 @@ class ProfileIntakeModel {
     @required this.sodium,
     @required this.protein,
   });
+
+  // Based from recommendations.json
+  Map<String, double> toRecommendationsJson() => {
+    'Sat': saturatedFat,
+    'Trans': transFat,
+    'Carbs': carbs,
+    'Added Sugar': addedSugar,
+    'Sodium': sodium,
+    'Protein': protein,
+  };
 }

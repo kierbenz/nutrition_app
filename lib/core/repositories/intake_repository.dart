@@ -160,14 +160,22 @@ class IntakeRepository {
   ///
   /// Returns the excess of food intakes
   /// 
-  List<Map> getRecommendations() {
+  List<Map> getRecommendations(calories) {
     final List<Map> recommendations = [];
-    final proteinRecommendation = _recommendations
-      .firstWhere((recommendation) => recommendation.category == 'Protein', orElse: () => null);
-    if (proteinRecommendation != null) {
-      recommendations.add(
-          proteinRecommendation.toJson()..addAll({'value': 50.00}));
-    }
+
+    final takenIntake = getTakenIntake().toRecommendationsJson();
+    final recommendedIntake = getRecommendedIntake(calories)
+        .toRecommendationsJson();
+
+    takenIntake.forEach((category, value) {
+      final differenceIntake = recommendedIntake[category] - takenIntake[category];
+      if (differenceIntake < 0) {
+        final recommendationData = _recommendations.firstWhere((recommendation) =>
+          recommendation.category == category).toJson();
+        recommendationData.addAll({'value': differenceIntake.abs()});
+        recommendations.add(recommendationData);
+      }
+    });
 
     return recommendations;
   }
