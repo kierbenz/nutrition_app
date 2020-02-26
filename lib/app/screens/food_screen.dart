@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/core/models/food_model.dart';
 import 'package:nutrition_app/core/repositories/food_repository.dart';
-import 'home_screen.dart';
 import 'widgets/food_card.dart';
 import 'food_detail_screen.dart';
 

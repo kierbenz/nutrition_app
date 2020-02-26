@@ -161,16 +161,15 @@ class IntakeRepository {
   /// Returns the excess of food intakes
   /// 
   List<Map> getRecommendations() {
-    final fatRecommendation = _recommendations
-      .firstWhere((recommendation) => recommendation.category == 'Fat')
-      .toJson();
+    final List<Map> recommendations = [];
     final proteinRecommendation = _recommendations
-      .firstWhere((recommendation) => recommendation.category == 'Protein')
-      .toJson();
-    return [
-      fatRecommendation..addAll({'value': 100.00}),
-      proteinRecommendation..addAll({'value': 75.0}),
-    ];
+      .firstWhere((recommendation) => recommendation.category == 'Protein', orElse: () => null);
+    if (proteinRecommendation != null) {
+      recommendations.add(
+          proteinRecommendation.toJson()..addAll({'value': 50.00}));
+    }
+
+    return recommendations;
   }
 
   List<String> _getDateRangeFromNow(days) {

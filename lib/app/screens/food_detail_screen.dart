@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nutrition_app/app/screens/home_screen.dart';
 import 'package:nutrition_app/core/models/food_model.dart';
 import 'package:nutrition_app/core/models/intake_model.dart';
 import 'package:nutrition_app/core/repositories/food_repository.dart';
 import 'package:nutrition_app/core/repositories/intake_repository.dart';
 import 'widgets/food_details_column.dart';
-import 'food_screen.dart';
-
 
 class FoodDetailScreen extends StatefulWidget {
   final String name;
