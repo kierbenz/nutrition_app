@@ -87,8 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Color _getColorCalorieTaken() {
     // Range for indicator
     double lessThan = _recommendedCalories - 200;
-    double greaterThan = _recommendedCalories + 200;
-    if (_caloriesTaken > lessThan && _caloriesTaken < greaterThan) {
+    if (_caloriesTaken > lessThan) {
       return Colors.red;
     }
     return Colors.tealAccent[700];
