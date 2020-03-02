@@ -89,7 +89,8 @@ class IntakeRepository {
     double takenAddedSugar = 0.0;
     double takenSodium = 0.0;
     double takenProtein = 0.0;
-    _intakes.forEach((intake) {
+    final intakeToday = getIntakesToday();
+    intakeToday.forEach((intake) {
       takenFat = takenFat + intake.totalFat;
       takenSaturatedFat = takenSaturatedFat + intake.saturatedFat;
       takenTransFat = takenTransFat + intake.transFat;
