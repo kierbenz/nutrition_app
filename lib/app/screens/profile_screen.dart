@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/app/screens/widgets/gradient_appbar.dart';
 import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
 import 'package:nutrition_app/core/models/profile_intake_model.dart';
+import 'package:nutrition_app/core/repositories/profile_repository.dart';
 import '../../core/repositories/intake_repository.dart';
 import 'widgets/profile_info_card.dart';
 
@@ -23,15 +24,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  double _caloriesTaken;
   ProfileIntakeModel _recommended;
   ProfileIntakeModel _taken;
 
   @override
   void initState() {
     super.initState();
-    _caloriesTaken = IntakeRepository().getCaloriesTaken();
-    _recommended = IntakeRepository().getRecommendedIntake(_caloriesTaken);
+    final recommendedCalories = ProfileRepository().getRecommendedIntake();
+    _recommended = IntakeRepository().getRecommendedIntake(recommendedCalories);
     _taken = IntakeRepository().getTakenIntake();
   }
 

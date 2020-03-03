@@ -168,6 +168,9 @@ class IntakeRepository {
     final recommendedIntake = getRecommendedIntake(calories)
         .toRecommendationsJson();
 
+    print(takenIntake);
+    print(recommendedIntake);
+    
     takenIntake.forEach((category, value) {
       final differenceIntake = recommendedIntake[category] - takenIntake[category];
       if (differenceIntake < 0) {
