@@ -52,11 +52,11 @@ class IntakeRepository {
 
   double _getRecommended(calories, category) {
     if (category == 'Fat') {
-      return calories * 0.20 / 9;
+      return calories * 0.3 / 9;
     } else if (category == 'Sat') {
-      return calories * 0.1;
+      return calories * 0.07 / 9;
     } else if (category == 'Trans') {
-      return calories * 0.01;
+      return calories * 0.02 / 9;
     } else if (category == 'Carbs') {
       return calories * 0.5 / 4;
     } else if (category == 'Added Sugar') {
@@ -64,7 +64,7 @@ class IntakeRepository {
     } else if (category == 'Sodium') {
       return calories * 1.15;
     } else if (category == 'Protein') {
-      return calories * 0.3 / 4;
+      return calories * 0.2 / 4;
     }
     return 0.0;
   }
